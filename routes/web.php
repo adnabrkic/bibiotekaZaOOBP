@@ -9,6 +9,7 @@ use App\Http\Controllers\IzdavacController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\PosudbaController;
 use App\Http\Controllers\KnjigeFileController;
+use App\Http\Controllers\WeatherController;
 
 
 /*
@@ -23,7 +24,7 @@ use App\Http\Controllers\KnjigeFileController;
 */
 
 
-Route::middleware([
+/*Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
@@ -31,11 +32,28 @@ Route::middleware([
     Route::get('', function () {
         return view('');
     })->name('');
-});
+}); */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function() {
-    return view('dashboard');
-})->name('dashboard');
+/*Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('', function () {
+        return view('dashboard');
+    })->name('dashboard');
+}); */
+
+Route::get('/', function() {
+    $weatherController=new WeatherController();
+    $weatherData=$weatherController->getWeather();
+    return view('dashboard', ['weatherData'=>$weatherData]);
+})->name('dashboard'); 
+
+
+
+/*Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [DashboardController::class, 'index'])->name('dashboard'); */
+
 
 /*Route::middleware(['auth:sanctum', 'verified'])->get('/knjige', function() {
     return view('knjige.index');

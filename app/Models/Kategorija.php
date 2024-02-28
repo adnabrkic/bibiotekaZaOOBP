@@ -9,6 +9,13 @@ class Kategorija extends Model
 {
     public $timestamps = false;
     use HasFactory;
+
+    public function knjige()
+    {
+        return $this -> hasMany (Knjige::class, 'kategorijaID');
+    }
+
+    
     protected $fillable = [
         'ime',
         'opis',

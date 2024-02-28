@@ -5,9 +5,27 @@
         </h2>
     </x-slot>
 
-    <div style="text-align: justify; padding: 0 20px;">
-    <p>
-    Dobrodošli u našu biblioteku, mjesto gdje se riječi pretvaraju u prozore u neistražene svjetove, 
+    <div class="flex justify-center align-start py-5">
+        <div class="py-3 mx-3 md:bg-white-100">
+    <h1 class="text-3x1 font-bold mb-4 text-center">Vremenske informacije:</h2>
+    @if(isset($weatherData['main']['temp']))
+    <p class="text-1g mb-2 text-center"> Temperatura: {{round($weatherData['main']['temp']-273.15)}}</p>
+    <p class="text-1g mb-2 text-center"> Opis vremena: {{$weatherData['weather'][0]['description']}}</p>
+    @endif
+
+    @if(isset($weatherData['weather'][0]['description']))
+    <p class="text-1g mb-2 text-center"> Grad: {{$weatherData['name']}}</p>
+    @endif
+
+</div>
+   
+</div>
+
+    <div class="flex justify-between items-start text-center">
+        <!-- Tekst lijevo -->
+        <div class="w-1/2 p-4">
+            <p>
+            Dobrodošli u našu biblioteku, mjesto gdje se riječi pretvaraju u prozore u neistražene svjetove, 
     gdje stranice knjiga postaju mostovi do mašte i znanja.
 
     U našoj biblioteci, svaka knjiga je vrata koja vas vode na putovanje kroz vječnost, 
@@ -21,16 +39,18 @@
     gdje se svaki okretaj stranice osjeća poput otkrića.
 
     Neka naše police knjiga budu vaše utočište, mjesto gdje možete istraživati, 
-    učiti, sanjati i rasti. Dobrodošli u našu biblioteku, gdje se priče rađaju, znanje cvjeta, a mašta leti slobodno.</p>
-</div>
+    učiti, sanjati i rasti. Dobrodošli u našu biblioteku, gdje se priče rađaju, znanje cvjeta, a mašta leti slobodno.
+            </p>
+        </div>
 
-<div class="image-row">
-    <p align="center">
-    <img src="{{asset('slike/slika1zaOOBP.jpg')}}" width="1000px">
-</p>
+        <!-- Slika desno -->
+        <div class="w-1/2 p-4">
+            <img src="{{ asset('slike/slika1zaOOBP.jpg') }}" class="w-full" alt="Slika">
+        </div>
     </div>
 
-
-
-    
 </x-app-layout>
+
+
+
+

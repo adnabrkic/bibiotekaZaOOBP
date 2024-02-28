@@ -86,6 +86,11 @@ public function process (Request $request)
             'ISBN' => $request -> ISBN,
             'dostupneKopije' => $request -> dostupneKopije,
             'autorID' => $request -> autorID,
+            'kategorijaID' => $request -> kategorijaID,
+            'jezikID'  => $request -> jezikID,
+            'izdavacID'  => $request -> izdavacID,
+            'policaID' => $request -> policaID,
+            'prosjecnaOcjena'  => $request -> prosjecnaOcjena,
         ]);
 
         $autor = Autor::where('ime', $request->ime)
@@ -160,6 +165,7 @@ public function process (Request $request)
             'title' => $request -> title,
             'zanr' => $request -> zanr,
             'datumIzdavanja' => $request ->datumIzdavanja,
+            'dostupneKopije' => $request -> dostupneKopije,
             'opis' => $request -> opis,
         ]);
         return redirect() -> route('knjige');

@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategorija;
+use App\Models\Weather;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class KategorijaController extends Controller
+class WeatherController extends Controller
 {
+    public function getWeather()
+    {
+        $apiKey='99ab8aaf51a074da4e6f7c2151b20cc3';
+        $city='Bihac';
+        $response=Http::get("https://api.openweathermap.org/data/2.5/weather", 
+        [
+            'q'=>$city,
+            'appid'=>$apiKey,
+
+        ]);
+        $weatherData=$response->json();
+        return $weatherData;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        $kategorija=DB::table('kategorijas')
-        ->get();
-        return view('kategorija.index', ['kategorija'=>$kategorija]);
     }
 
     /**
@@ -37,7 +48,7 @@ class KategorijaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kategorija $kategorija)
+    public function show(Weather $weather)
     {
         //
     }
@@ -45,7 +56,7 @@ class KategorijaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategorija $kategorija)
+    public function edit(Weather $weather)
     {
         //
     }
@@ -53,7 +64,7 @@ class KategorijaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategorija $kategorija)
+    public function update(Request $request, Weather $weather)
     {
         //
     }
@@ -61,7 +72,7 @@ class KategorijaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategorija $kategorija)
+    public function destroy(Weather $weather)
     {
         //
     }
